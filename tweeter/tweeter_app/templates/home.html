@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery="full" %}
+{% bootstrap_messages %}
+{% bootstrap_form_errors form %}
+
+	<meta charset="UTF-8">
+	<title>Django Twitter example</title>
+</head>
+<body>
+	<div class="container">
+	{% if user.is_authenticated %}
+	<h1>Welcome {{ user.username }}</h1>
+	<form class="form" action="/" method="post">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	<button class="btn btn-primary" type="submit" action="/">Publish</button>
+	</form>
+	{% else %}
+	<h1>Welcome unauthenticated user!</h1>
+	{% endif %}
+	</div>
+	<h2>Latest tweets!</h2>
+	{% for t in tweets %}
+	<div class="container">
+	{{ t.user }} says {{ t.tweet }}
+	</div>
+	{% empty %}
+	Nothing to see here yet.
+	</div>
+	{% endfor %}
+</body>
+</html>

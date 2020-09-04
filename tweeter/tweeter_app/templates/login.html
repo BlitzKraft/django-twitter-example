@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery="full" %}
+{% bootstrap_messages %}
+{% bootstrap_form_errors  form %}
+
+	<meta charset="UTF-8">
+	<title>Django Twitter example</title>
+</head>
+<body>
+	<h1>Welcome back!</h1>
+	<div class="container">
+	<form class="form" method="post">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	</div>
+</body>
+</html>
